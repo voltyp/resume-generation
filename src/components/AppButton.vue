@@ -1,13 +1,17 @@
 <template>
-$END$
+  <button class="btn" :class="color">
+    <slot />
+  </button>
 </template>
 
 <script>
 export default {
-name: "AppButton"
+  name: "AppButton",
+  props: {
+    color: {
+      type: String,
+      required: true
+    }
+  }
 }
 </script>
-
-<style scoped>
-
-</style>
