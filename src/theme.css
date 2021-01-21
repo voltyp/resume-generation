@@ -234,9 +234,9 @@ h3 {
 }
 
 .list-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: space-between;*/
     padding: 0.5rem 0;
 }
 
