@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-
-    <app-loader v-if="false"></app-loader>
     <div class="card">
       <h2>Комментарии</h2>
       <ul class="list">
-        <li class="list-item">
-          <div>
-            <p><strong>test@microsoft.com</strong></p>
-            <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, reiciendis.</small>
-          </div>
+        <li
+          class="list-item"
+          v-for="comment in comments"
+          :key="comment.id"
+        >
+          <p><strong>{{ comment.email }}</strong></p>
+          <p><small>{{ comment.body }}</small></p>
         </li>
       </ul>
     </div>
@@ -17,15 +17,13 @@
 </template>
 
 <script>
-import AppLoader from '@/components/AppLoader'
-
 export default {
   name: "AppComments",
-  components: {AppLoader}
+  props: {
+    comments: {
+      type: Array
+    }
+  }
 }
 
 </script>
-
-<style scoped>
-
-</style>
