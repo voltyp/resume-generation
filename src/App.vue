@@ -3,9 +3,11 @@
     <app-sidebar @add="getTemplate"></app-sidebar>
     <app-resume :templates="templates"></app-resume>
   </div>
-  <app-button color="primary mb-1" @click="getComments">Загрузить комментарии</app-button>
-  <app-loader></app-loader>
-  <AppComments :comments="comments"></AppComments>
+  <div class="container">
+    <app-button v-if="loadComments" color="primary mb-1" @click="getComments">Загрузить комментарии</app-button>
+    <app-loader v-if="commentsLoader"></app-loader>
+    <AppComments v-else-if="!loadComments" :comments="comments"></AppComments>
+  </div>
 </template>
 
 <script>
@@ -22,6 +24,7 @@ export default {
       templates: [],
       comments: [],
       commentsUrl: 'https://jsonplaceholder.typicode.com/comments?_limit=42',
+      loadComments: true,
       commentsLoader: false
     }
   },
@@ -34,6 +37,8 @@ export default {
       })
     },
     async getComments() {
+      this.loadComments = false;
+      this.commentsLoader = true;
       const param = {
         methods: 'GET',
         headers: {
@@ -42,6 +47,7 @@ export default {
       };
       const comments = await fetch(this.commentsUrl, param);
       this.comments = await comments.json();
+      this.commentsLoader = false;
     }
   },
   components: {

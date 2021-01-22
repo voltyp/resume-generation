@@ -31,6 +31,7 @@ import AppButton from "@/components/AppButton";
 
 export default {
   name: 'AppSidebar',
+  emits: ['add'],
   data() {
 
     return {
